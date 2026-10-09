@@ -1,0 +1,26 @@
+[
+    {
+        "imie": "Jan",
+        "nazwisko": "Kowalski",
+        "wiek": "25",
+        "miasto": "Opole"
+    },
+    {
+        "imie": "Anna",
+        "nazwisko": "Nowak",
+        "wiek": "30",
+        "miasto": "Gogolin"
+    },
+    {
+        "imie": "Piotr",
+        "nazwisko": "Wiśniewski",
+        "wiek": "22",
+        "miasto": "Kraków"
+    },
+    {
+        "imie": "Maria",
+        "nazwisko": "Zielińska",
+        "wiek": "28",
+        "miasto": "Wrocław"
+    }
+]
