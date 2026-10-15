@@ -63,7 +63,6 @@ class TestCsvJson(unittest.TestCase):
 
     
     def test_polish_characters(self):
-        """Sprawdza poprawną obsługę polskich znaków."""
         with tempfile.TemporaryDirectory() as folder:
             source = Path(folder) / "polskie.csv"
             destination = Path(folder) / "polskie.json"
@@ -84,7 +83,6 @@ class TestCsvJson(unittest.TestCase):
             self.assertEqual(data[1]["miasto"], "Żory")
 
     def test_empty_values(self):
-        """Sprawdza zachowanie pustych wartości."""
         with tempfile.TemporaryDirectory() as folder:
             source = Path(folder) / "puste.csv"
             destination = Path(folder) / "puste.json"
@@ -104,7 +102,6 @@ class TestCsvJson(unittest.TestCase):
             self.assertEqual(len(data), 2)
 
     def test_invalid_csv(self):
-        """Sprawdza wykrywanie nieprawidłowej liczby kolumn."""
         with tempfile.TemporaryDirectory() as folder:
             source = Path(folder) / "bledny.csv"
             destination = Path(folder) / "wynik.json"
@@ -116,8 +113,6 @@ class TestCsvJson(unittest.TestCase):
 
             with self.assertRaises(ValueError):
                 csv_to_json(source, destination)
-
-
 
 if __name__ == "__main__":
     unittest.main()

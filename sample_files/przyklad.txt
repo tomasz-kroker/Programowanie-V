@@ -1,0 +1,7 @@
+Przykładowy dokument tekstowy
+
+To jest pierwszy akapit dokumentu.
+Program konwertuje plik TXT do formatu DOCX.
+
+Obsługiwane są również polskie znaki:
+ą ć ę ł ń ó ś ź ż
