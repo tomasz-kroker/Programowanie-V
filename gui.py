@@ -3,8 +3,22 @@ from tkinter import ttk, filedialog, messagebox
 from pathlib import Path
 from threading import Thread
 from queue import Queue, Empty
+import logging
+
 
 from converters.registry import available_targets, execute
+
+LOG_FILE = Path(__file__).resolve().parent / "conversion.log"
+
+logging.basicConfig(
+    filename=LOG_FILE,
+    level=logging.ERROR,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+    encoding="utf-8"
+)
+
+logger = logging.getLogger(__name__)
+
 
 
 class ConverterApp:
@@ -263,6 +277,7 @@ class ConverterApp:
 
         self.root.after(100, self.check_result)
 
+   
     def run_conversion(self, source, destination):
 
         try:
@@ -270,7 +285,14 @@ class ConverterApp:
             self.results.put(("success", result))
 
         except Exception as error:
+            logger.exception(
+                "Błąd konwersji pliku %s do %s",
+                source,
+                destination
+            )
+
             self.results.put(("error", str(error)))
+
 
     def check_result(self):
 

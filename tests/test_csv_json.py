@@ -114,5 +114,53 @@ class TestCsvJson(unittest.TestCase):
             with self.assertRaises(ValueError):
                 csv_to_json(source, destination)
 
+    
+    def test_json_error_message(self):
+
+        with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder) / "bledny.json"
+            destination = Path(folder) / "wynik.csv"
+
+            source.write_text(
+                '{"imie": "Jan",}',
+                encoding="utf-8"
+            )
+
+            with self.assertRaises(ValueError) as context:
+                json_to_csv(source, destination)
+
+            message = str(context.exception)
+
+            self.assertIn("Nieprawidłowa struktura", message)
+            self.assertIn("wierszu 1", message)
+            self.assertIn("kolumna", message)
+            self.assertFalse(destination.exists())
+
+    
+    def test_missing_csv_columns(self):
+
+        with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder) / "niepelny.csv"
+            destination = Path(folder) / "wynik.json"
+
+            source.write_text(
+                "imie,nazwisko,wiek\n"
+                "Jan,Kowalski,25\n"
+                "Anna,Nowak\n",
+                encoding="utf-8"
+            )
+
+            with self.assertRaises(ValueError) as context:
+                csv_to_json(source, destination)
+
+            message = str(context.exception)
+
+            self.assertIn("Brakuje danych", message)
+            self.assertIn("wierszu 3", message)
+
+            self.assertFalse(destination.exists())
+
+
+
 if __name__ == "__main__":
     unittest.main()

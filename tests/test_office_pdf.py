@@ -71,7 +71,9 @@ class TestOfficePdf(unittest.TestCase):
                 docx_to_pdf(source, destination)
 
 
+    
     def test_missing_libreoffice(self):
+
         with tempfile.TemporaryDirectory() as folder:
             source = Path(folder) / "test.docx"
             destination = Path(folder) / "test.pdf"
@@ -81,13 +83,14 @@ class TestOfficePdf(unittest.TestCase):
             document.save(source)
 
             with patch(
-                "converters.office_pdf.Path.is_file",
-                side_effect=[True, False]
+                "converters.office_pdf.find_libreoffice",
+                return_value=None
             ):
                 with self.assertRaises(FileNotFoundError):
                     docx_to_pdf(source, destination)
 
             self.assertFalse(destination.exists())
+
 
 
 if __name__ == "__main__":

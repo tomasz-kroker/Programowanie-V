@@ -2,13 +2,46 @@ import subprocess
 import shutil
 import tempfile
 from pathlib import Path
+import os
+
+
+def find_libreoffice() -> Path | None:
+
+    for name in ("soffice", "libreoffice"):
+        executable = shutil.which(name)
+
+        if executable:
+            return Path(executable)
+
+    candidates = []
+
+    for variable in ("ProgramFiles", "ProgramFiles(x86)"):
+        base = os.environ.get(variable)
+
+        if base:
+            candidates.append(
+                Path(base) / "LibreOffice" / "program" / "soffice.exe"
+            )
+
+    candidates.extend([
+        Path(r"C:\Program Files\LibreOffice\program\soffice.exe"),
+        Path(r"C:\Program Files (x86)\LibreOffice\program\soffice.exe"),
+        Path("/usr/bin/libreoffice"),
+        Path("/usr/bin/soffice"),
+        Path("/Applications/LibreOffice.app/Contents/MacOS/soffice"),
+    ])
+
+    for path in candidates:
+        if path.is_file():
+            return path
+
+    return None
+
 
 
 def office_to_pdf(source: Path, destination: Path) -> Path:
 
-    libreoffice = Path(
-        r"C:\Program Files\LibreOffice\program\soffice.exe"
-    )
+    libreoffice = find_libreoffice()
 
     if not source.is_file():
         raise FileNotFoundError("Nie znaleziono pliku wejściowego.")
@@ -16,8 +49,11 @@ def office_to_pdf(source: Path, destination: Path) -> Path:
     if source.suffix.lower() not in (".docx", ".odt"):
         raise ValueError("Obsługiwane są tylko pliki DOCX i ODT.")
 
-    if not libreoffice.is_file():
-        raise FileNotFoundError("Nie znaleziono LibreOffice.")
+    if libreoffice is None:
+        raise FileNotFoundError(
+        "Nie znaleziono LibreOffice. "
+        "Zainstaluj LibreOffice i spróbuj ponownie."
+    )
 
     if destination.suffix.lower() != ".pdf":
         raise ValueError("Plik wynikowy musi mieć rozszerzenie PDF.")
