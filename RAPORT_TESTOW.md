@@ -1,9 +1,5 @@
 # Raport testów – Uniwersalny konwerter plików
 
-**Przedmiot:** Programowanie V  
-**Projekt:** Uniwersalny konwerter plików  
-**Autor:** Tomasz Kroker
-
 ## 1. Cel testowania
 
 Celem testów było sprawdzenie poprawności działania aplikacji umożliwiającej konwersję plików CSV, JSON, TXT, DOCX, ODT i PDF.
@@ -23,17 +19,19 @@ Testy wykonano również w nowym środowisku wirtualnym `.venv`, po instalacji z
 
 ## 3. Testy automatyczne
 
-Przygotowano 20 testów automatycznych.
+Przygotowano 22 testy automatyczne.
 
 | Obszar | Liczba testów | Wynik |
 |---|---:|---|
-| Konwersja CSV i JSON | 8 | Zaliczono |
+| Konwersja CSV i JSON | 9 | Zaliczono |
 | Konwersja TXT i DOCX | 3 | Zaliczono |
-| Konwersja dokumentów do PDF | 5 | Zaliczono |
+| Konwersja dokumentów do PDF | 6 | Zaliczono |
 | Rejestr konwerterów i walidacja | 4 | Zaliczono |
-| **Razem** | **20** | **20/20** |
+| **Razem** | **22** | **22/22** |
 
-Testy obejmowały poprawne i błędne dane, zachowanie polskich znaków, puste wartości, nieprawidłową liczbę kolumn CSV, błędny JSON, brak plików, nieobsługiwane konwersje oraz zabezpieczenie przed nadpisaniem.
+Testy obejmowały poprawne i błędne dane, zachowanie polskich znaków, puste wartości, nieprawidłową liczbę kolumn CSV, błędny JSON, odrzucanie zagnieżdżonych danych JSON, brak plików, nieobsługiwane konwersje oraz zabezpieczenie przed nadpisaniem.
+
+Sprawdzono również obsługę braku LibreOffice i błędu uruchomienia procesu zewnętrznego.
 
 ## 4. Testy manualne
 
@@ -51,12 +49,12 @@ Testy obejmowały poprawne i błędne dane, zachowanie polskich znaków, puste w
 Ostatnie pełne uruchomienie testów automatycznych:
 
 ```text
-Ran 20 tests in 3.639s
+Ran 22 tests in 3.711s
 
 OK
 ```
 
-Wszystkie testy automatyczne zakończyły się pomyślnie.
+Wszystkie 22 testy automatyczne zakończyły się pomyślnie.
 
 ## 6. Wnioski
 

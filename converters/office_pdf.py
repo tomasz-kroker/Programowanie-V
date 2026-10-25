@@ -75,6 +75,7 @@ def office_to_pdf(source: Path, destination: Path) -> Path:
             str(source.resolve())
         ]
 
+        
         try:
             result = subprocess.run(
                 command,
@@ -82,10 +83,19 @@ def office_to_pdf(source: Path, destination: Path) -> Path:
                 text=True,
                 timeout=60
             )
+
         except subprocess.TimeoutExpired as error:
             raise RuntimeError(
-                "Przekroczono czas konwersji."
+                "Przekroczono czas konwersji. "
+                "Sprawdź, czy LibreOffice działa prawidłowo."
             ) from error
+
+        except OSError as error:
+            raise RuntimeError(
+                "Nie można uruchomić LibreOffice. "
+                "Sprawdź instalację programu oraz uprawnienia."
+            ) from error
+
 
         if result.returncode != 0:
             raise RuntimeError(

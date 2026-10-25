@@ -92,6 +92,33 @@ class TestOfficePdf(unittest.TestCase):
             self.assertFalse(destination.exists())
 
 
+    def test_libreoffice_execution_error(self):
+        with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder) / "test.docx"
+            destination = Path(folder) / "test.pdf"
+
+            document = Document()
+            document.add_paragraph("Test uruchamiania LibreOffice")
+            document.save(source)
+
+            with patch(
+                "converters.office_pdf.find_libreoffice",
+                return_value=Path("soffice")
+            ):
+                with patch(
+                    "converters.office_pdf.subprocess.run",
+                    side_effect=OSError("Odmowa dostępu")
+                ):
+                    with self.assertRaises(RuntimeError) as context:
+                        docx_to_pdf(source, destination)
+
+            self.assertIn(
+                "Nie można uruchomić LibreOffice",
+                str(context.exception)
+            )
+
+            self.assertFalse(destination.exists())
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -85,7 +85,9 @@ https://www.libreoffice.org/
 
 Aplikacja wyszukuje LibreOffice w zmiennej PATH oraz w typowych lokalizacjach instalacji.
 
-W przypadku braku programu konwersje wymagające LibreOffice nie będą dostępne do wykonania, a przy próbie ich uruchomienia zostanie zgłoszony odpowiedni błąd.
+W przypadku braku LibreOffice format PDF może nadal pojawiać się na liście dostępnych formatów docelowych. Jednak podczas próby konwersji DOCX → PDF lub ODT → PDF aplikacja wykryje brak programu i wyświetli odpowiedni komunikat błędu.
+
+Aby korzystać z tych konwersji, należy zainstalować LibreOffice.
 
 ## 5. Uruchamianie aplikacji
 
@@ -152,7 +154,7 @@ Przykład:
 
 Nazwy kolumn pochodzą z kluczy pierwszego obiektu. Ich kolejność jest zachowywana.
 
-Do przewidywalnej konwersji zalecane są płaskie obiekty zawierające wartości tekstowe. Zagnieżdżone obiekty i tablice nie są obsługiwane jako osobne struktury tabelaryczne.
+Konwersja JSON → CSV obsługuje płaskie obiekty zawierające wyłącznie wartości tekstowe. Wartości liczbowe, logiczne, null oraz zagnieżdżone obiekty i tablice są odrzucane z odpowiednim komunikatem błędu.
 
 ## 8. Ograniczenia projektu
 
@@ -198,7 +200,7 @@ Lub w środowisku wirtualnym Windows:
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-Przeprowadzono 20 testów automatycznych, obejmujących między innymi:
+Przeprowadzono 22 testy automatyczne, obejmujące między innymi:
 
 - Konwersję CSV i JSON.
 - Konwersję TXT i DOCX.
@@ -213,7 +215,7 @@ Przeprowadzono 20 testów automatycznych, obejmujących między innymi:
 - Symulację braku LibreOffice.
 - Obsługę dostępnych formatów w rejestrze konwerterów.
 
-**Wynik ostatniego uruchomienia: 20 testów, wszystkie zakończone pomyślnie.**
+**Wynik ostatniego uruchomienia: 22 testy, wszystkie zakończone pomyślnie**
 
 Projekt został również sprawdzony w nowym środowisku wirtualnym Python z zależnościami zainstalowanymi za pomocą `requirements.txt`.
 

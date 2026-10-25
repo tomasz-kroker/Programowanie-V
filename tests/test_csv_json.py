@@ -161,6 +161,37 @@ class TestCsvJson(unittest.TestCase):
             self.assertFalse(destination.exists())
 
 
+    def test_nested_json(self):
+
+        with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder) / "zagniezdzony.json"
+            destination = Path(folder) / "wynik.csv"
+
+            data = [
+                {
+                    "imie": "Jan",
+                    "adres": {
+                        "miasto": "Opole"
+                    }
+                }
+            ]
+
+            source.write_text(
+                json.dumps(data, ensure_ascii=False),
+                encoding="utf-8"
+            )
+
+            with self.assertRaises(ValueError) as context:
+                json_to_csv(source, destination)
+
+            self.assertIn(
+                "Dozwolone są tylko wartości tekstowe",
+                str(context.exception)
+            )
+
+            self.assertFalse(destination.exists())
+
+
 
 if __name__ == "__main__":
     unittest.main()

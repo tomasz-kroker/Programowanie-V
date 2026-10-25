@@ -77,6 +77,17 @@ def json_to_csv(source: Path, destination: Path) -> Path:
     if any(set(row.keys()) != set(headers) for row in data):
         raise ValueError("Obiekty JSON mają różne kolumny.")
 
+    for row_number, row in enumerate(data, start=1):
+        for column, value in row.items():
+
+            if not isinstance(value, str):
+                raise ValueError(
+                    f"Nieprawidłowa wartość w rekordzie "
+                    f"{row_number}, kolumna '{column}'. "
+                    f"Dozwolone są tylko wartości tekstowe."
+                )
+
+
     with destination.open("w", encoding="utf-8", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=headers)
         writer.writeheader()
