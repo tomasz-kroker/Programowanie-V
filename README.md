@@ -248,18 +248,7 @@ Katalog `sample_files` zawiera przykładowe pliki wejściowe, m.in. CSV, JSON, T
 
 Plik `demo.py` zawiera wcześniejszą demonstrację konwersji wykonywanych z poziomu terminala.
 
-## 12. Historia realizacji
-
-Projekt był rozwijany etapami:
-
-- **Laboratorium 2:** konwersje CSV ↔ JSON, podstawowe testy i repozytorium Git.
-- **Laboratorium 3:** konwersje TXT ↔ DOCX, DOCX → PDF i ODT → PDF oraz ich testowanie.
-- **Laboratorium 4:** interfejs graficzny Tkinter/ttk, dynamiczny wybór formatów, obsługa konwersji i konfliktów nazw.
-- **Laboratorium 5:** rozbudowa walidacji, obsługa błędów, automatyczne wyszukiwanie LibreOffice, testy i dokumentacja.
-
-Historia postępu projektu dostępna jest w commitach repozytorium GitHub.
-
-## 13. Wykorzystane źródła i narzędzia
+## 12. Wykorzystane źródła i narzędzia
 
 - Python – https://docs.python.org/3/
 - Tkinter – https://docs.python.org/3/library/tkinter.html
@@ -268,10 +257,10 @@ Historia postępu projektu dostępna jest w commitach repozytorium GitHub.
 - Dokumentacja modułu subprocess – https://docs.python.org/3/library/subprocess.html
 - Instrukcja projektowa przedmiotu Programowanie V – „Projekt 1. Uniwersalny konwerter plików”.
 
-W trakcie realizacji wykorzystano również **ChatGPT (OpenAI)** jako narzędzie wspomagające projektowanie aplikacji, przygotowanie fragmentów kodu, analizę błędów, opracowanie testów i dokumentacji.
+W trakcie realizacji wykorzystano również **ChatGPT (OpenAI)** jako narzędzie wspomagające analizę błędów, opracowanie testów i dokumentacji.
 
 Implementacja była uruchamiana i testowana etapami w środowisku Visual Studio Code.
 
-## 14. Autor
+## 13. Autor
 
 **Tomasz Kroker**
