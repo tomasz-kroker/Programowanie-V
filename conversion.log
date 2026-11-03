@@ -1,0 +1,68 @@
+2026-10-25 14:34:20,658 | ERROR | Błąd konwersji pliku D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\sample_files\bledny.json do D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\sample_files\bledny.csv
+Traceback (most recent call last):
+  File "D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\converters\csv_json.py", line 33, in json_to_csv
+    data = json.load(file)
+  File "C:\Users\tomas\AppData\Local\Python\pythoncore-3.14-64\Lib\json\__init__.py", line 298, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "C:\Users\tomas\AppData\Local\Python\pythoncore-3.14-64\Lib\json\__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\tomas\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tomas\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 6 column 1 (char 66)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\gui.py", line 284, in run_conversion
+    result = execute(source, destination)
+  File "D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\converters\registry.py", line 57, in execute
+    return converter(source, destination)
+  File "D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\converters\csv_json.py", line 36, in json_to_csv
+    raise ValueError(
+    ...<4 lines>...
+    ) from error
+ValueError: Nieprawidłowa struktura pliku JSON.
+Błąd w wierszu 6, kolumna 1.
+Sprawdź poprawność danych w pliku.
+2026-10-25 14:50:26,920 | ERROR | Błąd konwersji pliku D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\sample_files\bledny.json do D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\sample_files\bledny.csv
+Traceback (most recent call last):
+  File "D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\converters\csv_json.py", line 49, in json_to_csv
+    data = json.load(file)
+  File "C:\Users\tomas\AppData\Local\Python\pythoncore-3.14-64\Lib\json\__init__.py", line 298, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "C:\Users\tomas\AppData\Local\Python\pythoncore-3.14-64\Lib\json\__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\tomas\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tomas\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 6 column 1 (char 66)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\gui.py", line 284, in run_conversion
+    result = execute(source, destination)
+  File "D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\converters\registry.py", line 57, in execute
+    return converter(source, destination)
+  File "D:\Studia\Semetr VII\Programowanie V\Labolatorium\Projekt 1\Programowanie-V\converters\csv_json.py", line 52, in json_to_csv
+    raise ValueError(
+    ...<4 lines>...
+    ) from error
+ValueError: Nieprawidłowa struktura pliku JSON.
+Błąd w wierszu 6, kolumna 1.
+Sprawdź poprawność danych w pliku.
