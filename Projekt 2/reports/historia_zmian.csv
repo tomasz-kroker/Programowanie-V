@@ -1,0 +1,7 @@
+﻿Czas;Operacja;Parametry;Rekordy przed;Rekordy po;Rekordy dotkniete
+2026-11-08 15:56:24;Usuwanie duplikatow;Pelne duplikaty;20670;20640;30
+2026-11-08 15:56:24;Uzupelnianie brakow;MedInc, mediana, wartosc=3.5347;20640;20640;80
+2026-11-08 15:56:24;Uzupelnianie brakow;Region, dominanta, wartosc=north;20640;20640;40
+2026-11-08 15:56:24;Korekta zakresu;HouseAge, zakres=0 do 52, zamiana na NaN;20640;20640;40
+2026-11-08 15:56:24;Uzupelnianie brakow;HouseAge, mediana, wartosc=29.0;20640;20640;40
+2026-11-08 15:56:24;Oznaczanie outlierow;AveRooms, IQR=1.5, flaga=AveRooms_outlier;20640;20640;553
