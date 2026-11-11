@@ -3,6 +3,7 @@ import pandas as pd
 
 from data_profile import generate_profile, generate_statistics
 from data_cleaning import DataSession
+from data_visualization import create_plot, calculate_correlation
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -108,6 +109,79 @@ try:
 
     print("\n=== HISTORIA ZMIAN ===")
     print(history.to_string(index=False))
+
+    CHART_DIR = BASE_DIR / "charts"
+    CHART_DIR.mkdir(exist_ok=True)
+
+    charts = [
+        ("histogram", "MedInc", None),
+        ("scatter", "MedInc", "MedHouseVal"),
+        ("box", "AveRooms", None),
+        ("bar", "Region", "MedHouseVal")
+    ]
+
+    print("\n=== GENEROWANIE WYKRESOW ===")
+
+    datasets = [
+        ("przed", session.raw),
+        ("po", session.current)
+    ]
+
+    for stage, data in datasets:
+        for chart_type, x, y in charts:
+
+            title = f"{chart_type} - {stage} czyszczeniem"
+
+            fig = create_plot(
+                data,
+                chart_type,
+                x,
+                y,
+                title
+            )
+
+            filename = f"{chart_type}_{stage}.png"
+            output = CHART_DIR / filename
+
+            
+            fig.savefig(
+                output,
+                dpi=150,
+                bbox_inches="tight"
+            )
+
+            print("Zapisano:", filename)
+
+            if stage == "po" and chart_type == "scatter":
+                for extension in ("pdf", "svg"):
+                    extra_file = CHART_DIR / f"scatter_po.{extension}"
+
+                    fig.savefig(
+                        extra_file,
+                        bbox_inches="tight"
+                    )
+
+                    print("Zapisano:", extra_file.name)
+
+            fig.clear()
+
+
+    print("\n=== ANALIZA KORELACJI ===")
+
+    correlation_before = calculate_correlation(
+        session.raw,
+        "MedInc",
+        "MedHouseVal"
+    )
+
+    correlation_after = calculate_correlation(
+        session.current,
+        "MedInc",
+        "MedHouseVal"
+    )
+
+    print("Korelacja przed:", round(correlation_before, 4))
+    print("Korelacja po:", round(correlation_after, 4))
 
     print("\n=== ZAPISANO PLIKI ===")
     print("profil_przed.csv")
